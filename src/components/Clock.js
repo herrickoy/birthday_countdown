@@ -13,6 +13,10 @@ export default class Clock extends Component {
         this.getTimeRemaining = this.getTimeRemaining.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log(`next props: ${JSON.stringify(nextProps)}`)
+    }
+
     getTimeRemaining(birthday) {
 
         var bday = new Date(birthday);
@@ -75,6 +79,11 @@ export default class Clock extends Component {
             const timeRemaining = this.getTimeRemaining(this.birthday)
             this.setState({ timeRemaining: timeRemaining })
         }, 1000);
+    }
+
+    componentWillUnmount() {
+        console.log('trying to unmount');
+        clearInterval(this.timer);
     }
 
     render() {
