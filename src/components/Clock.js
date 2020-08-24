@@ -18,6 +18,31 @@ export default class Clock extends Component {
         var bday = new Date(birthday);
         let today = new Date();
 
+        const currentMonth = today.getMonth();
+        const birthMonth = bday.getMonth();
+
+        if(birthMonth > currentMonth) {
+            // month is AFTER the current month
+            bday.setFullYear(today.getFullYear());
+        }
+        else if (birthMonth < currentMonth) {
+            // month is BEFORE the current month
+            bday.setFullYear(today.getFullYear() + 1);
+        }
+        else if(birthMonth == currentMonth) {
+            const birthDay = bday.getDate();
+            const currentDay = today.getDate();
+
+            if(birthDay > currentDay) {
+                // day is set AFTER the current day
+                bday.setFullYear(today.getFullYear());
+            }
+            else if (birthDay < currentDay) {
+                // day is set BEFORE the current day
+                bday.setFullYear(today.getFullYear() + 1);
+            }
+        }
+
         var distance = bday.getTime() - today.getTime();
 
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
