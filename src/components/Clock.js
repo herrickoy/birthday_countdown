@@ -13,10 +13,6 @@ export default class Clock extends Component {
         this.getTimeRemaining = this.getTimeRemaining.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(`next props: ${JSON.stringify(nextProps)}`)
-    }
-
     getTimeRemaining(birthday) {
 
         var bday = new Date(birthday);
@@ -44,6 +40,10 @@ export default class Clock extends Component {
             else if (birthDay < currentDay) {
                 // day is set BEFORE the current day
                 bday.setFullYear(today.getFullYear() + 1);
+            }
+            else if (birthDay == currentDay) {
+                return 0
+                
             }
         }
 
@@ -82,7 +82,6 @@ export default class Clock extends Component {
     }
 
     componentWillUnmount() {
-        console.log('trying to unmount');
         clearInterval(this.timer);
     }
 
@@ -91,15 +90,24 @@ export default class Clock extends Component {
         
         return (
             <div>
-                <div>
-                    <div>DAYS {data.days}</div>
-                    <div>HRS {data.hours}</div>
-                    <div>MINS {data.minutes}</div>
-                    <div>SECS {data.seconds}</div>
-                </div>
-                <div>
-                    {<h4>remaining until you are {this.getAge()}</h4>}
-                </div>
+            {
+                this.state.timeRemaining == 0 ?
+                    <h1>Happy Birthday!</h1>
+                :
+                    <div>
+                        <div>
+                            <div>DAYS {data.days}</div>
+                            <div>HRS {data.hours}</div>
+                            <div>MINS {data.minutes}</div>
+                            <div>SECS {data.seconds}</div>
+                        </div>
+                        <div>
+                            {<h4>remaining until you are {this.getAge()}</h4>}
+                        </div>
+                    </div>
+
+            }
+
             </div>
         )
     }
