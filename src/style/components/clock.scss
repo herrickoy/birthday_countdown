@@ -75,5 +75,9 @@ ul p {
 }
 
 .until-container {
-    @include center-item($top: 85%,)
+    @include center-item($top: 85%);
+}
+
+.until-container h4 {
+    font-size: 50px;
 }
