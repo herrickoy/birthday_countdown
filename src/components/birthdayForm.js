@@ -58,7 +58,7 @@ class BirthdayForm extends Component {
                             onChange={this.handleChange} 
                         />
                         <div className="submit-container">
-                            <input type="submit" value="Generate Countdaown"/>
+                            <input type="submit" value="Generate Countdown"/>
                         </div>
                     </div>
             }
