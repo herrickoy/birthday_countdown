@@ -1,0 +1,15 @@
+// HEADER
+@mixin header-background($color: var(--blue-primary), $clip-path: polygon(0 100%, 0 0, 50% 0, 16% 100%)) {
+    width: 100vw;
+    height: 100vh;
+    background-color: $color;
+    clip-path: $clip-path;
+}
+
+
+
+// CLOCK
+@mixin clock-dimensions {
+    height: 20%;
+    width: 71.2%;
+}
